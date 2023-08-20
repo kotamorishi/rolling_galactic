@@ -18,17 +18,30 @@
     <title>Galactic unicorn text rolling</title>
   </head>
   <body>
-    <div class="wrap">
+    <div id="container">
 
-      <p class="server_message">{{ server_message }}</p>
-      <form id="messenger-form">
-        <input type="text" id="uuid" placeholder="UUID" />
-        <input type="text" id="message" placeholder="message" />
-        <input type="color" id="colorpicker" value="#0000ff">
-        <button id="update">
-          <i class="fa-regular fa-paper-plane"></i>&nbsp;Submit
-        </button>
-      </form>
+        <form class="c-form">
+          <div class="two-columns">
+            <fieldset>
+              <label class="c-form-label" for="uuid">UUID<span class="c-form-required"> *</span></label>
+              <input id="uuid" class="c-form-input" type="text" placeholder="uuid" required>
+            </fieldset>
+
+            <fieldset>
+              <label class="c-form-label" for="color">Color</label>
+              <input id="colorpicker" type="color" class="c-form-input-color" >
+            </fieldset>
+          </div>
+
+          <fieldset>
+            <label class="c-form-label" for="message">Message<span class="c-form-required"> *</span></label>
+            <textarea id="message" class="c-form-input" placeholder="Hello" required></textarea>
+          </fieldset>
+          <button id="update">
+            <i class="fa-regular fa-paper-plane"></i>&nbsp;Submit
+          </button>
+        </form>
+
     </div>
 
     <div class="toast">

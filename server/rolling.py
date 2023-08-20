@@ -1,6 +1,7 @@
 # Serve text string for the UUID
-from flask import Flask, request, redirect,url_for, render_template, jsonify
+from flask import Flask, request, redirect,url_for, render_template, jsonify, make_response
 import urllib.parse
+import json
 
 app = Flask(__name__)
 
@@ -14,19 +15,19 @@ def get_uuid_string(uuid):
     try:
         with open('uuid/' + sanitized_input, 'r') as f:
             # read the last line of the file
-            content = f.readlines()[-1]
+            content = f.read();
     except:
         data = {
         'status': 'Not Found',
         'message': 'Requested uuid not found on this server.'
         }
         return jsonify(data), 404
+    # respond with the content of the file in json format
+    response = make_response(content)
+    response.headers['Content-Type'] = 'application/json'
+    response.status_code = 200
 
-    data = {
-    'status': 'Success',
-    'message': content
-    }
-    return jsonify(data), 200
+    return response
 
 @app.route('/update', methods=['GET'])
 def redirect_to_index():
@@ -38,30 +39,26 @@ def submit_data():
     message = str(request.form.get('message'))  # Get data from the form
     color = str(request.form.get('colorpicker'))  # Get color from the form
     # print debug message
-    print('UUID: ' + UUID)
-    print('Message: ' + message)
-    print('Color: ' + color)
-    # Since uuid could have some special chars, sanitize uuid
+    # print('UUID: ' + UUID)
+    # print('Message: ' + message)
+    # print('Color: ' + color)
+
+    #  Since uuid could have some special chars, sanitize uuid
     sanitized_input = urllib.parse.quote(UUID)
-    print('sanitized_input: ' + sanitized_input)
 
-    # check if file size is greater than 128kb, clear the file.
-    try:
-        with open('uuid/' + sanitized_input, 'r') as f:
-            if len(f.read()) > 128000:
-                with open('uuid/' + sanitized_input, 'w') as f:
-                    f.write('')
-    except:
-        pass
+    data = {
+        "color": color,
+        "message": message,
+        "city": "New York"
+    }
 
-    # write to file
     try:
-        with open('uuid/' + sanitized_input, 'a') as f:
-            f.write("\r\n" + message)
+        with open('uuid/' + sanitized_input, 'w') as json_file:
+            json.dump(data, json_file)
     except:
         data = {
-        'status': 'error',
-        'message': 'something went wrong'
+            'status': 'error',
+            'message': 'something went wrong'
         }
         return jsonify(data), 500
     
@@ -69,6 +66,7 @@ def submit_data():
         'status': 'success',
         'message': 'data updated'
     }
+    # log to 
     return jsonify(data), 200
 
 @app.route('/')
