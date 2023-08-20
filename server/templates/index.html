@@ -19,10 +19,12 @@
   </head>
   <body>
     <div class="wrap">
+
       <p class="server_message">{{ server_message }}</p>
       <form id="messenger-form">
         <input type="text" id="uuid" placeholder="UUID" />
         <input type="text" id="message" placeholder="message" />
+        <input type="color" id="colorpicker" value="#0000ff">
         <button id="update">
           <i class="fa-regular fa-paper-plane"></i>&nbsp;Submit
         </button>
@@ -31,11 +33,11 @@
 
     <div class="toast">
       <div class="toast-content">
-        <i class="fas fa-solid fa-check check"></i>
+        <i class="fas fa-solid fa-check check" id="popup-icon"></i>
 
         <div class="message">
-          <span class="text text-1">Success</span>
-          <span class="text text-2">Your message has been saved</span>
+          <span class="text text-1" id="popup-title">Success</span>
+          <span class="text text-2" id="popup-message">Your message has been saved</span>
         </div>
       </div>
       <i class="fa-solid fa-xmark close"></i>

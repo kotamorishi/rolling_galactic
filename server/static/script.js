@@ -1,6 +1,9 @@
 // script.js
 const galacticUUID = "galacticUUID";
 const latestMessage = "latestMessage";
+const errorTitle = "Error";
+// declare global variables(pretty bad practice, but it's ok for this small project. pull request is welcome)
+let timer1, timer2;
 
 // Save data to localStorage
 function saveUUIDToLocalStorage(value) {
@@ -49,26 +52,32 @@ function uuidv4() {
 // run this function when page loads
 window.onload = function () {
   let form = document.getElementById("messenger-form");
-  document.getElementById("update").addEventListener("click", function(event) {
+  document.getElementById("update").addEventListener("click", function (event) {
     event.preventDefault();
     console.log("update button clicked");
     saveLatestMessageToLocalStorage(document.getElementById("message").value);
     const data = new FormData();
     data.append("uuid", document.getElementById("uuid").value);
     data.append("message", document.getElementById("message").value);
+    data.append("colorpicker", document.getElementById("colorpicker").value);
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/update", true);
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
-      }
-      else{
-        console.log("Error:", response);
-
+        if (response.status === "success") {
+          showPopup("Success", "Message updated.");
+        }
+      } else {
+        showPopup(errorTitle, "Failed to update message.");
       }
     };
-    xhr.send(data);
+    try {
+      xhr.send(data);
+    } catch (error) {
+      showPopup(errorTitle, "Failed to update message.");
+    }
   });
 
   let UUID = getUUIDFromLocalStorage();
@@ -78,35 +87,49 @@ window.onload = function () {
 };
 
 
+function showPopup(title, message) {
+  const toast = document.querySelector(".toast");
+  const closeIcon = document.querySelector(".close");
+  const progress = document.querySelector(".progress");
+
+  document.getElementById("popup-title").innerHTML = title;
+  document.getElementById("popup-message").innerHTML = message;
+
+  // if the tile is errorTitle, then show the error icon
+  const ic = document.getElementById("popup-icon");
+  if (title === errorTitle) {
+    ic.className = 'fas fa-solid fa-triangle-exclamation fa-bounce check';
+    ic.style="background-color: #ff1605;";
+  }
+  else{
+    ic.className = 'fas fa-solid fa-check check';
+    ic.style="background-color: rgb(63, 128, 232);";
+  }
+
+  toast.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    toast.classList.remove("active");
+  }, 5000); //1s = 1000 milliseconds
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 5300);
+}
 
 const button = document.querySelector("button"),
-      toast = document.querySelector(".toast")
-      closeIcon = document.querySelector(".close"),
-      progress = document.querySelector(".progress");
+  toast = document.querySelector(".toast");
+(closeIcon = document.querySelector(".close")),
+  (progress = document.querySelector(".progress"));
 
-      let timer1, timer2;
+closeIcon.addEventListener("click", () => {
+  toast.classList.remove("active");
 
-      button.addEventListener("click", () => {
-        toast.classList.add("active");
-        progress.classList.add("active");
+  setTimeout(() => {
+    progress.classList.remove("active");
+  }, 300);
 
-        timer1 = setTimeout(() => {
-            toast.classList.remove("active");
-        }, 5000); //1s = 1000 milliseconds
-
-        timer2 = setTimeout(() => {
-          progress.classList.remove("active");
-        }, 5300);
-      });
-      
-      closeIcon.addEventListener("click", () => {
-        toast.classList.remove("active");
-        
-        setTimeout(() => {
-          progress.classList.remove("active");
-        }, 300);
-
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      });
-
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+});
