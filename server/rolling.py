@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/<uuid>')
+@app.route('/api/<uuid>')
 def get_uuid_string(uuid):
     # Since uuid could have some special chars, sanitize uuid
     sanitized_input = urllib.parse.quote(uuid)
@@ -15,7 +15,7 @@ def get_uuid_string(uuid):
     try:
         with open('uuid/' + sanitized_input, 'r') as f:
             # read the last line of the file
-            content = f.read();
+            content = f.read()
     except:
         data = {
         'status': 'Not Found',
@@ -49,7 +49,6 @@ def submit_data():
     data = {
         "color": color,
         "message": message,
-        "city": "New York"
     }
 
     try:

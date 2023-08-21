@@ -133,3 +133,36 @@ closeIcon.addEventListener("click", () => {
   clearTimeout(timer1);
   clearTimeout(timer2);
 });
+
+
+const colorInput = document.getElementById("colorpicker");
+const colorCircles = document.getElementById("color-circles");
+
+const colorInputBg = document.getElementById("colorpicker-bg");
+const colorCirclesBg = document.getElementById("color-circles-bg");
+
+// Define an array of color values
+const colors = ["#FF0000", "#EB5353","#FF7B54", "#F9D923", "#36AE7C", "#187498", "#FF00FF", "#0000FF", "#FFFFFF", "#000000"];
+
+// Create a color circle for each color value
+colors.forEach(color => {
+  // for text circles
+  const circle = document.createElement("div");
+  circle.classList.add("color-circle");
+  circle.style.backgroundColor = color;
+  circle.addEventListener("click", () => {
+    colorInput.value = color;
+    colorInput.style.backgroundColor = color;
+  });
+  colorCircles.appendChild(circle);
+
+  // for background circles
+  const circleBg = document.createElement("div");
+  circleBg.classList.add("color-circle");
+  circleBg.style.backgroundColor = color;
+  circleBg.addEventListener("click", () => {
+    colorInputBg.value = color;
+    colorInputBg.style.backgroundColor = color;
+  });
+  colorCirclesBg.appendChild(circleBg);
+});

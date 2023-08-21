@@ -18,31 +18,60 @@
     <title>Galactic unicorn text rolling</title>
   </head>
   <body>
+    <div class="centered">
+      <h1>Galactic Unicorn Rolling Text</h1>
+    </div>
     <div id="container">
-
-        <form class="c-form">
-          <div class="two-columns">
-            <fieldset>
-              <label class="c-form-label" for="uuid">UUID<span class="c-form-required"> *</span></label>
-              <input id="uuid" class="c-form-input" type="text" placeholder="uuid" required>
-            </fieldset>
-
-            <fieldset>
-              <label class="c-form-label" for="color">Color</label>
-              <input id="colorpicker" type="color" class="c-form-input-color" >
-            </fieldset>
-          </div>
+      <form class="c-form">
+        <div class="two-columns">
+          <fieldset>
+            <label class="c-form-label" for="uuid"
+              >UUID<span class="c-form-required"> *</span></label
+            >
+            <input
+              id="uuid"
+              class="c-form-input"
+              type="text"
+              placeholder="uuid"
+              required
+            />
+          </fieldset>
 
           <fieldset>
-            <label class="c-form-label" for="message">Message<span class="c-form-required"> *</span></label>
-            <textarea id="message" class="c-form-input" placeholder="Hello" required></textarea>
+            <label class="c-form-label" for="color">Text color</label>
+            <div class="color-picker">
+              <input type="text" id="colorpicker" class="c-form-input" value="#ff0000">
+              <div class="color-circles" id="color-circles"></div>
+            </div>
           </fieldset>
-          <button id="update">
-            <i class="fa-regular fa-paper-plane"></i>&nbsp;Submit
-          </button>
-        </form>
 
+          <fieldset>
+            <label class="c-form-label" for="color">Background color</label>
+            <div class="color-picker">
+              <input type="text" id="colorpicker-bg" class="c-form-input" value="#ff0000">
+              <div class="color-circles" id="color-circles-bg"></div>
+            </div>
+          </fieldset>
+
+        </div>
+
+        <fieldset>
+          <label class="c-form-label" for="message"
+            >Message<span class="c-form-required"> *</span></label
+          >
+          <textarea
+            id="message"
+            class="c-form-input"
+            placeholder="Hello"
+            required
+          ></textarea>
+        </fieldset>
+        <button id="update">
+          <i class="fa-regular fa-paper-plane"></i>&nbsp;Submit
+        </button>
+      </form>
     </div>
+  </div>
 
     <div class="toast">
       <div class="toast-content">
@@ -50,7 +79,9 @@
 
         <div class="message">
           <span class="text text-1" id="popup-title">Success</span>
-          <span class="text text-2" id="popup-message">Your message has been saved</span>
+          <span class="text text-2" id="popup-message"
+            >Your message has been saved</span
+          >
         </div>
       </div>
       <i class="fa-solid fa-xmark close"></i>

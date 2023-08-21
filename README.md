@@ -1,6 +1,10 @@
-# galactic_messenger
+# Rolling Galactic
 Text scroller for PIMORONI Galactic Unicorn
 
+## Install
+```
+git clone git@github.com:kotamorishi/rolling_galactic.git
+```
 
-Reference:
-https://codepen.io/a7rarpress/pen/YzJxyXZ
+# Credit
+

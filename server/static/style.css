@@ -1,10 +1,32 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.centered {
+  text-align: center;
+}
+
+h1 {
+  padding-top: 40px;
+  font-family: "Lobster", cursive;
+  font-size: 80px;
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 40px;
+  }
 }
 
 html {
@@ -13,7 +35,7 @@ html {
 body {
   background-color: #eaf4f8;
   font-family: futura-pt, sans-serif;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 #container {
   display: flex;
@@ -39,9 +61,9 @@ body {
 }
 .c-form-label {
   display: inline-block;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   color: #3d3935;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   font-size: 1rem;
 }
 .c-form-input {
@@ -54,12 +76,12 @@ body {
   outline: 0;
 }
 .c-form-input-color {
-    width: 100%;
-    padding: 1px 1px;
-    border: 1px solid #3d3935;
-    border-radius: 4px;
-    outline: 0;
-  }
+  width: 100%;
+  padding: 1px 1px;
+  border: 1px solid #3d3935;
+  border-radius: 4px;
+  outline: 0;
+}
 .c-form-input::placeholder {
   color: #867d6c;
   font-size: 1rem;
@@ -79,7 +101,7 @@ textarea.c-form-input {
   grid-template-columns: 100%;
 }
 fieldset {
-  margin: .4rem 0;
+  margin: 0.4rem 0;
   padding: 0;
   border: none;
 }
@@ -98,118 +120,139 @@ fieldset {
   cursor: pointer;
 }
 
-
-
-.toast{
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    border-radius: 12px;
-    background: #fff;
-    padding: 20px 35px 20px 25px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    border-left: 6px solid rgb(63, 128, 232);
-    overflow: hidden;
-    transform: translateX(calc(100% + 30px));
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+.color-picker {
+  display: flex;
+  align-items: center;
 }
 
-.toast.active{
-    transform: translateX(0%);
+.color-circles {
+  display: flex;
+  margin-left: 10px;
 }
 
-.toast .toast-content{
-    display: flex;
-    align-items: center;
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
-.toast-content .check{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    width: 35px;
-    background-color: rgb(63, 128, 232);
-    color: #fff;
-    font-size: 20px;
-    border-radius: 50%;
+.color-circle:hover {
+  transform: scale(1.2);
+  transition: all 0.1s linear;
 }
 
-.toast-content .message{
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px;
+.toast {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid rgb(63, 128, 232);
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 }
 
-.message .text{
-    font-size: 18px;
-    font-weight: 400;;
-    color: #666666;
+.toast.active {
+  transform: translateX(0%);
 }
 
-.message .text.text-1{
-    font-weight: 600;
-    color: #333;
+.toast .toast-content {
+  display: flex;
+  align-items: center;
 }
 
-.toast .close{
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    padding: 5px;
-    cursor: pointer;
-    opacity: 0.7;
+.toast-content .check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  background-color: rgb(63, 128, 232);
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
 }
 
-.toast .close:hover{
-    opacity: 1;
+.toast-content .message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
 }
 
-.toast .progress{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    background: #ddd;
+.message .text {
+  font-size: 18px;
+  font-weight: 400;
+  color: #666666;
 }
 
-.toast .progress:before{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgb(63, 128, 232);
+.message .text.text-1 {
+  font-weight: 600;
+  color: #333;
 }
 
-.progress.active:before{
-    animation: progress 5s linear forwards;
+.toast .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.toast .close:hover {
+  opacity: 1;
+}
+
+.toast .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+}
+
+.toast .progress:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(63, 128, 232);
+}
+
+.progress.active:before {
+  animation: progress 5s linear forwards;
 }
 
 @keyframes progress {
-    100%{
-        right: 100%;
-    }
+  100% {
+    right: 100%;
+  }
 }
 
-button{
-    padding: 12px 20px;
-    font-size: 20px;
-    outline: none;
-    border: none;
-    background-color: #4070f4;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
+button {
+  padding: 12px 20px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  background-color: #4070f4;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-button:hover{
-    background-color: #0e4bf1;
+button:hover {
+  background-color: #0e4bf1;
 }
 
-.toast.active ~ button{
-    pointer-events: none;
+.toast.active ~ button {
+  pointer-events: none;
 }
