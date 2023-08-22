@@ -37,7 +37,8 @@ def redirect_to_index():
 def submit_data():
     UUID = str(request.form.get('uuid'))  # Get uuid from the form
     message = str(request.form.get('message'))  # Get data from the form
-    color = str(request.form.get('colorpicker'))  # Get color from the form
+    text_color = str(request.form.get('colorpicker'))  # Get color from the form
+    background_color = str(request.form.get('colorpickerBg'))  # Get color from the form
     # print debug message
     # print('UUID: ' + UUID)
     # print('Message: ' + message)
@@ -47,8 +48,9 @@ def submit_data():
     sanitized_input = urllib.parse.quote(UUID)
 
     data = {
-        "color": color,
         "message": message,
+        "text_color": text_color,
+        "background_color": background_color
     }
 
     try:

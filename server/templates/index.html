@@ -67,27 +67,11 @@
           ></textarea>
         </fieldset>
         <button id="update">
-          <i class="fa-regular fa-paper-plane"></i>&nbsp;Submit
+          <i id="icon" class="fa-regular fa-paper-plane"></i>&nbsp;<span id="buttonText">Submit</span>
         </button>
       </form>
     </div>
   </div>
-
-    <div class="toast">
-      <div class="toast-content">
-        <i class="fas fa-solid fa-check check" id="popup-icon"></i>
-
-        <div class="message">
-          <span class="text text-1" id="popup-title">Success</span>
-          <span class="text text-2" id="popup-message"
-            >Your message has been saved</span
-          >
-        </div>
-      </div>
-      <i class="fa-solid fa-xmark close"></i>
-
-      <div class="progress"></div>
-    </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>

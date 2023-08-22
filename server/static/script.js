@@ -60,6 +60,7 @@ window.onload = function () {
     data.append("uuid", document.getElementById("uuid").value);
     data.append("message", document.getElementById("message").value);
     data.append("colorpicker", document.getElementById("colorpicker").value);
+    data.append("colorpickerBg", document.getElementById("colorpicker-bg").value);
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/update", true);
@@ -67,16 +68,16 @@ window.onload = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
         if (response.status === "success") {
-          showPopup("Success", "Message updated.");
+          setButtonMessage("Updating...");
         }
       } else {
-        showPopup(errorTitle, "Failed to update message.");
+        setButtonMessage(errorTitle);
       }
     };
     try {
       xhr.send(data);
     } catch (error) {
-      showPopup(errorTitle, "Failed to update message.");
+      setButtonMessage(errorTitle);
     }
   });
 
@@ -86,54 +87,30 @@ window.onload = function () {
   document.getElementById("message").value = latestMessage;
 };
 
-
-function showPopup(title, message) {
-  const toast = document.querySelector(".toast");
-  const closeIcon = document.querySelector(".close");
-  const progress = document.querySelector(".progress");
-
-  document.getElementById("popup-title").innerHTML = title;
-  document.getElementById("popup-message").innerHTML = message;
-
-  // if the tile is errorTitle, then show the error icon
-  const ic = document.getElementById("popup-icon");
-  if (title === errorTitle) {
-    ic.className = 'fas fa-solid fa-triangle-exclamation fa-bounce check';
-    ic.style="background-color: #ff1605;";
+// change button text to "Updating..." for 5 second
+function setButtonMessage(message) {
+  // clear previous timer
+  clearTimeout(timer1);
+  const button = document.getElementById("buttonText");
+  const icon = document.getElementById("icon");
+  if (message !== errorTitle) {
+    icon.classList.remove(...icon.classList);
+    icon.classList.add("fas", "fa-sync-alt", "fa-spin");
+    button.classList.add("green");
   }
   else{
-    ic.className = 'fas fa-solid fa-check check';
-    ic.style="background-color: rgb(63, 128, 232);";
+    icon.classList.remove(...icon.classList);
+    icon.classList.add("fas", "fa-exclamation-triangle", "fa-beat-fade");
+    // button background color changed to red
+    button.classList.add("red");
   }
-
-  toast.classList.add("active");
-  progress.classList.add("active");
-
+  button.innerHTML = message;
   timer1 = setTimeout(() => {
-    toast.classList.remove("active");
-  }, 5000); //1s = 1000 milliseconds
-
-  timer2 = setTimeout(() => {
-    progress.classList.remove("active");
-  }, 5300);
+    button.innerHTML = "Submit";
+    icon.classList.remove(...icon.classList);
+    icon.classList.add("fas", "fa-regular", "fa-paper-plane");
+  }, 5000);
 }
-
-const button = document.querySelector("button"),
-  toast = document.querySelector(".toast");
-(closeIcon = document.querySelector(".close")),
-  (progress = document.querySelector(".progress"));
-
-closeIcon.addEventListener("click", () => {
-  toast.classList.remove("active");
-
-  setTimeout(() => {
-    progress.classList.remove("active");
-  }, 300);
-
-  clearTimeout(timer1);
-  clearTimeout(timer2);
-});
-
 
 const colorInput = document.getElementById("colorpicker");
 const colorCircles = document.getElementById("color-circles");
