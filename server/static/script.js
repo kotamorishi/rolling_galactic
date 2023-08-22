@@ -54,7 +54,7 @@ window.onload = function () {
   let form = document.getElementById("messenger-form");
   document.getElementById("update").addEventListener("click", function (event) {
     event.preventDefault();
-    console.log("update button clicked");
+    saveUUIDToLocalStorage(document.getElementById("uuid").value);
     saveLatestMessageToLocalStorage(document.getElementById("message").value);
     const data = new FormData();
     data.append("uuid", document.getElementById("uuid").value);
