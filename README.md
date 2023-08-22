@@ -9,6 +9,7 @@ I am running this server at https://rolling.kotamorishita.com/
 Feel free to use this server for testing purpose.
 
 ## Server setup
+![lib directory contents](/server_screen.png)
 Server app is written in Python3 with Flask.
 1. Install Python3, if you don't have it.
 2. Install required packages.
