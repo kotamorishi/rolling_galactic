@@ -5,8 +5,8 @@ https://shop.pimoroni.com/products/galactic-unicorn
 This application is server and client pair.
 You can run this server application on Raspberry Pi 4 or almost any Python3 environment.
 
-I am running this server at http://rolling.kotamorishita.com/
-You can use this server for testing. if many people use this server, it will be down.
+I am running this server at https://rolling.kotamorishita.com/ 
+Feel free to use this server for testing purpose.
 
 ## Server setup
 Server app is written in Python3 with Flask.
@@ -45,7 +45,8 @@ Download Thonny IDE from https://thonny.org/
 ```python
 UUID = '692a216f-967b-49ec-95f5-ef307982c4b0'
 ```
-if your server ip is 192.168.0.122, set GALACTIC_SERVER as below.
+If your server ip is 192.168.0.122, set GALACTIC_SERVER as below.
+remember to add /api/ at the end of the url and scheme(http or https) is required.
 ```python
 GALACTIC_SEVER = 'http://192.168.0.122:3999/api/'
 ```

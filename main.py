@@ -200,7 +200,6 @@ while True:
 
     try:
         r = urequests.get(f'{GALACTIC_SEVER}{UUID}')
-        print(r)
 
         data = r.json()
 
