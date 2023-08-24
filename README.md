@@ -1,12 +1,32 @@
 # Rolling Galactic
-Text scroller for PIMORONI Galactic Unicorn
+A text scroller for PIMORONI Galactic Unicorn.
 https://shop.pimoroni.com/products/galactic-unicorn
 
-This application is server and client pair.
-You can run this server application on Raspberry Pi 4 or almost any Python3 environment.
+You can control your Galactic Unicorn via web.
+
+![lib directory contents](/rolling.jpg)
+
+This application is server-client pair.
+You can run this server application on a Raspberry Pi 4 or almost any Python3 environment.
+
+```mermaid
+sequenceDiagram
+    actor User
+    User->>Server:Send rolling text message. 
+    Note right of Server: Server stores message.
+    loop Each time show the message
+        Galactic Unicorn-->>Server: API
+        Server->>Galactic Unicorn:  Saved message.
+    end
+```
+
+When you run this server on your local network, you can send text to your Galactic Unicorn from anywhere in your home. If you wish to access your Galactic Unicorn from outside of your home(local network), you need to set up the server on public.
 
 I am running this server at https://rolling.kotamorishita.com/ 
-Feel free to use this server for testing purpose.
+Feel free to use this server for *testing purpose*, but please keep in mind follwings.
+- Not secure at all. Do not send any sensitive information.
+- Do not use it for production.
+- I might shutdown/modify/reboot or completely stop this server at any time.
 
 ## Server setup
 ![lib directory contents](/server_screen.png)
