@@ -2,7 +2,13 @@
 A text scroller for PIMORONI Galactic Unicorn.
 https://shop.pimoroni.com/products/galactic-unicorn
 
-You can control your Galactic Unicorn via web.
+You can control your Galactic Unicorn via the web.
+
+This app is under development, I might add more features whenever I feel like it.
+
+- [x] Support for multiple Galactic Unicorn.
+- [ ] Play a sound for new message.
+- [ ] Support for fonts(Bitmap Distribution Format)
 
 ![lib directory contents](/rolling.jpg)
 
@@ -23,25 +29,25 @@ sequenceDiagram
 When you run this server on your local network, you can send text to your Galactic Unicorn from anywhere in your home. If you wish to access your Galactic Unicorn from outside of your home(local network), you need to set up the server on public.
 
 I am running this server at https://rolling.kotamorishita.com/ 
-Feel free to use this server for *testing purpose*, but please keep in mind follwings.
+Feel free to use this server for *testing purpose*, but please keep in mind followings.
 - Not secure at all. Do not send any sensitive information.
 - Do not use it for production.
-- I might shutdown/modify/reboot or completely stop this server at any time.
+- I might shutdown, modify, reboot or completely stop this server at any time.
 
 ## Server setup
 ![lib directory contents](/server_screen.png)
-Server app is written in Python3 with Flask.
-1. Install Python3, if you don't have it.
-2. Install required packages.
+The server application is written in Python 3 with Flask.
+1. Install Python3 and pip3.(I guess you already have them)
+2. Install the required packages.
 ```
 pip3 install -r server/requirements.txt
 ```
-3. Run server.
+3. Run the server.
 ```
 python3 server/server.py
 ```
 4. Open http://localhost:3999/ in your browser.
-5. UUID will be generated. Copy it to clipboard.
+5. A UUID will be generated. Copy it to the clipboard or just leave the browser open.
 6. check your IP address, if you don't know it. you will need server IP address to setup client.
 
 
