@@ -82,5 +82,5 @@ GALACTIC_SEVER = 'http://192.168.0.122:3999/api/'
 
 
 # Credit
-network_manager.py from pimoroni-pico under MIT license.
+Most of pico side codes are taken from PIMORONI's example. You can find original license text under credits directory.
 https://github.com/pimoroni/pimoroni-pico
