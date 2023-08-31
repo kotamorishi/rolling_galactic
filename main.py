@@ -7,7 +7,7 @@ import urequests
 import WIFI_CONFIG
 
 # Server
-GALACTIC_SEVER = 'http://rolling.kotamorishita.com/api/'
+GALACTIC_SEVER = 'https://rolling.kotamorishita.com/api/'
 # unique id for your device
 UUID = '692a216f-967b-49ec-95f5-ef307982c4b0'
 
@@ -54,12 +54,13 @@ gu = GalacticUnicorn()
 graphics = PicoGraphics(DISPLAY)
 width = GalacticUnicorn.WIDTH
 height = GalacticUnicorn.HEIGHT
+brightness = 0.2
 
 def display(image):
 
     fg_pen = graphics.create_pen(255, 200, 255)
     bg_pen = graphics.create_pen(0, 0, 0)
-    gu.set_brightness(0.2)
+    gu.set_brightness(brightness)
     graphics.clear()
     for y in range(len(image)):
         row = image[y]
@@ -109,8 +110,9 @@ def outline_text(text, x, y, message_color):
     graphics.text(text, x, y, -1, 1)
 
 def scrollText(message, text_color = (255,255,255),  background_color = (0,0,0)):
+    global brightness
 
-    gu.set_brightness(0.2)
+    gu.set_brightness(brightness)
 
     # state constants
     STATE_PRE_SCROLL = 0
@@ -132,9 +134,11 @@ def scrollText(message, text_color = (255,255,255),  background_color = (0,0,0))
         time_ms = time.ticks_ms()
 
         if gu.is_pressed(GalacticUnicorn.SWITCH_BRIGHTNESS_UP):
+            brightness = brightness + 0.01 
             gu.adjust_brightness(+0.01)
 
         if gu.is_pressed(GalacticUnicorn.SWITCH_BRIGHTNESS_DOWN):
+            brightness = brightness - 0.01 
             gu.adjust_brightness(-0.01)
 
         if state == STATE_PRE_SCROLL and time_ms - last_time > HOLD_TIME * 1000:
@@ -200,6 +204,7 @@ while True:
 
     try:
         r = urequests.get(f'{GALACTIC_SEVER}{UUID}')
+        print(r)
 
         data = r.json()
 
@@ -216,12 +221,6 @@ while True:
         time.sleep(5)
         if(f'{e}' != '-2'):
             scrollText(f'{e}')
-        else:
-            scrollText('Wifi connection failed, restarting...')
-            import machine
-            machine.reset()
         
     time.sleep(1)
-
-
 
