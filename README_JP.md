@@ -1,6 +1,6 @@
 # Rolling Galactic
 
-PIMORONI Galactic Unicornのテキストスクローラーです。すごいです。
+PIMORONI Galactic Unicornのテキストスクローラーです。
 https://shop.pimoroni.com/products/galactic-unicorn
 
 WebサイトからGalactic Unicornを制御することがます。
